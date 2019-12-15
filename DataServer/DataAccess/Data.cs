@@ -28,6 +28,16 @@ namespace DataAccess
             }
         }
 
+        public static void InsertCsv(string json, string databaseName, string tableName)
+        {
+            using var db = new LiteDatabase(databaseName);
+            {
+                var collection = db.GetCollection(tableName);
+                var jsonData = JsonSerializer.Deserialize(json).AsDocument;
+                db.Engine.Insert("MyData", jsonData);
+            }
+        }
+
         public int InsertBulk(IEnumerable<T> objectList)
         {
             int recordsInserted = 0;
@@ -35,7 +45,7 @@ namespace DataAccess
             using var db = new LiteDatabase(DatabaseName);
             {
                 collection = db.GetCollection<T>(TableName);
-                recordsInserted = collection.InsertBulk(objectList);
+                recordsInserted = collection.Insert(objectList);
             }
             return recordsInserted;
         }
@@ -51,7 +61,7 @@ namespace DataAccess
 
                 if (row != null)
                 {
-                    var wow = collection.Delete(r => r.Id == row.Id);
+                    var wow = collection.Delete(row.Id);
                 }
             }
             return row;

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ImportCsv": {
+      "commandName": "Project",
+      "commandLineArgs": "--PathToCsv \"C:\\Users\\seank\\Source\\Repos\\LoadTestDataServer\\DataServer\\ImportCsv\\CsvSample.csv\" --DatabaseName \"Test4.db\" --ContainsHeaderNames"
+    }
+  }
+}
