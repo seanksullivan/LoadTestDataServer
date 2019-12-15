@@ -53,7 +53,7 @@ namespace DataAccess
             }
         }
 
-        public BsonDocument GetNext()
+        public string GetNext()
         {
             BsonDocument row;
             using var db = new LiteDatabase(DatabaseName);
@@ -71,7 +71,7 @@ namespace DataAccess
                     }
                 }
             }
-            return row;
+            return row.ToString();
         }
 
         private static List<BsonDocument> CreateBsonDocumentList(List<string> csvRows, List<string> headerList)
@@ -119,6 +119,5 @@ namespace DataAccess
 
             return docList;
         }
-
     }
 }
